@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./main.css">
+  <title>Html Canvas Line</title>
+</head>
+
+<body>
+
+  <canvas id="line-canvas" class="canvas"></canvas>
+
+  <!-- 
+
+    - Để vẽ line ta có thể dùng các phương thức: 
+      + beginPath()
+      + moveTo()
+      + lineTo()
+      + stroke()
+    
+    - Đầu tiên, ta sẽ dùng beginPath() để khai báo việc ta se vẽ 1 path mới.
+    - Tiếp theo ta sẽ dùng moveTo() để xác định vị trí context point.
+    - Sau đó, ta dùng LineTo() để vẽ 1 đường thẳng (straight line) tue start positon tới new position.
+    - Cuối cùng để làm line hiển thị, ta có thể dùng stroke() để tạo stroke (nét) cho line. default sẽ là black.
+
+
+    - Để set with cho line ta có thể dùng : lineWidth property của canvas context.
+    - NOTE : linceWidth phải được set trước khi gọi context.stroke()
+
+    - Để thêm màu cho line ta sẽ dùng property : strokeStyle = 'red, green, ... | hex | rgb'
+
+    - Ta có thể bo tròn line bắng cách dùng property : lineCap = 'butt' (default)  | 'round' | 'square' 
+
+
+
+   -->
+
+
+  <script type="text/javascript">
+    let lineCanvas = document.getElementById('line-canvas');
+    let context = lineCanvas.getContext('2d');
+
+
+    context.beginPath();
+
+    context.moveTo(20, 20);
+    context.lineTo(100, 30);
+
+    // set line width
+    context.lineWidth = 15;
+
+    // set line color
+    context.strokeStyle = '#123abc'
+
+    // 
+    context.lineCap = 'round';
+
+    context.stroke();
+
+  </script>
+</body>
+
+</html>
