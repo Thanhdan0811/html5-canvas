@@ -1,46 +1,10 @@
 const canvas = document.querySelector("canvas");
 
-// if (!canvas)  return"";
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 // create a ton of methods.
 const context = canvas.getContext("2d");
-
-// context.fillRect(x, y, width, height);
-
-// context.fillStyle = 'rgba(255, 0, 0, 0.6)';
-// context.fillRect(100, 100, 100, 100);
-// context.fillStyle = 'rgba(111, 19, 0, 0.6)';
-// context.fillRect(400, 200, 100, 100);
-
-// LINE
-// context.beginPath();
-// context.moveTo(50, 300);
-// context.lineTo(300, 100);
-// context.lineTo(400, 300);
-// context.strokeStyle = "red";
-// context.stroke();
-
-// Arc / Circle
-
-// context.beginPath();
-// 30 là bán kính.
-// context.arc(300, 300, 30, 0, Math.PI * 2, false);
-// context.strokeStyle = "blue";
-// context.stroke();
-
-// for loop
-
-// for (let i = 0; i < 10; i++) {
-//     let x = Math.random() * window.innerWidth;
-//     let y = Math.random() * window.innerHeight;
-//     context.beginPath();
-//     context.arc(x, y, 30, 0, Math.PI * 2, false);
-//     context.strokeStyle = "blue";
-//     context.stroke();
-// }
 
 let mouse = {
     x: undefined,
@@ -59,10 +23,8 @@ let colorArr = [
 ]
 
 window.addEventListener('mousemove', function (event) {
-    // console.log("mouse move", event);
     mouse.x = event.x;
     mouse.y = event.y;
-
 });
 
 window.addEventListener("resize", function (event) {
@@ -70,8 +32,6 @@ window.addEventListener("resize", function (event) {
     canvas.height = innerHeight;
     init();
 });
-
-
 
 function Circle(x, y, dx, dy, radius) {
     this.x = x;
@@ -82,11 +42,10 @@ function Circle(x, y, dx, dy, radius) {
     this.minRadius = radius;
     this.color = "transparent";
     this.hoverColor = colorArr[Math.round(Math.random() * colorArr.length)];
-    this.PI = Math.PI * (Math.random() * 2 + 1);
 
     this.draw = function () {
         context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, this.PI, false);
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * (1/2), false);
         context.strokeStyle = "transparent";
         context.stroke();
         context.fillStyle = this.color;
@@ -107,9 +66,7 @@ function Circle(x, y, dx, dy, radius) {
 
         this.x += this.dx;
         this.y += this.dy;
-
         //   interactive
-
         if (mouse.x - this.x < 50 && mouse.x - this.x > -50 && mouse.y - this.y < 50 && mouse.y - this.y > -50) {
             if (this.radius < maxRadius) {
                 this.radius += 1;
@@ -125,14 +82,7 @@ function Circle(x, y, dx, dy, radius) {
 
         this.draw();
     };
-}
-
-// let x = Math.random() * innerWidth;
-// let y = Math.random() * innerHeight;
-// let radius = 30;
-// let dx = (Math.random() - 0.5) * 4;
-// let dy = (Math.random() - 0.5) * 4;
-
+};
 
 let circleArrs = [];
 function init() {
@@ -150,13 +100,8 @@ function init() {
 }
 
 const animate = () => {
-    // let time = performance.now();
-    // console.log(time);
     requestAnimationFrame(animate);
-
-    // Xóa các hình đã tạo trước đó, x, y là vị trí bắt đầu, w, h là kích thước cần clear.
     context.clearRect(0, 0, innerWidth, innerHeight);
-
     circleArrs.forEach((circle) => {
         circle.update();
     });
