@@ -45,8 +45,8 @@ function Circle(x, y, dx, dy, radius) {
 
     this.draw = function () {
         context.beginPath();
-        context.arc(this.x, this.y, this.radius, 0, Math.PI * (1/2), false);
-        context.strokeStyle = "transparent";
+        context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        context.strokeStyle = this.hoverColor;
         context.stroke();
         context.fillStyle = this.color;
         context.fill();
@@ -76,9 +76,9 @@ function Circle(x, y, dx, dy, radius) {
             this.radius -= 1;
         }
         
-        if (Math.abs(this.radius - this.minRadius) < this.minRadius) {
-            this.color = "transparent";
-        }
+        // if (Math.abs(this.radius - this.minRadius) < this.minRadius) {
+        //     this.color = "transparent";
+        // }
 
         this.draw();
     };
@@ -88,8 +88,8 @@ let circleArrs = [];
 function init() {
     circleArrs = [];
     context.clearRect(0, 0, innerWidth, innerHeight);
-    for (let i = 0; i < 800; i++) {
-        let radius = Math.random() * 3 + 1;
+    for (let i = 0; i < 1; i++) {
+        let radius = Math.random() *  + 1;
         let x = Math.random() * (innerWidth - radius * 2) + radius;
         let y = Math.random() * (innerHeight - radius * 2) + radius;
         let dx = (Math.random() - 0.5) * 1;
